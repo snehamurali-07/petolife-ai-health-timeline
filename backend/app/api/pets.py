@@ -35,6 +35,14 @@ def create_pet(
     return pet
 
 
+@router.get("/", response_model=list[PetResponse])
+def get_pets(
+    db: Session = Depends(get_db)
+):
+    pets = db.query(Pet).all()
+    return pets
+
+
 @router.get("/{pet_id}", response_model=PetResponse)
 def get_pet(
     pet_id: UUID,
