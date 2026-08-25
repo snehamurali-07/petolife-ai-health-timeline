@@ -25,7 +25,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "https://YOUR-FRONTEND.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -51,14 +51,14 @@ client = genai.Client(
 # Health check
 # ---------------------------------------------------------
 
-@app.get("/")
+@app.get("/api/")
 def root():
     return {
         "message": "PetOlife AI Health Timeline API"
     }
 
 
-@app.get("/health")
+@app.get("/api/health")
 def health():
     return {
         "status": "healthy"
